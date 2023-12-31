@@ -16,7 +16,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{$offer->offerId }}</h5>
                                 <p class="card-text">{{ $offer->url }}</p>
-                                <p class="card-text">{{ $offer->price }}
+                                <p class="card-text">{{ $offer->price }} {{ $offer->currencyId }}
                                 </p>
                             </div>
                         </div>

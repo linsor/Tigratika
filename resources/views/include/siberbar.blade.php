@@ -17,5 +17,21 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('data.filling')}}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Filing DB
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('XMLtoExcel')}}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                XMLtoExcel
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
