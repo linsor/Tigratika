@@ -9,5 +9,13 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('data.download')}}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Download
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>

@@ -5,7 +5,7 @@ namespace App\Exports;
 use App\Models\Offer;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class MySQLExportExcerl implements FromCollection
+class DBExportExcel implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection

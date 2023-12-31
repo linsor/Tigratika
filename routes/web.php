@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\XmlToExcelControllers\AdminIndexOffersController;
+use App\Http\Controllers\XmlToExcelControllers\ExportDBtoExcelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\XmlToExcelControllers\XmlToExcelController;
 
@@ -22,3 +23,4 @@ use App\Http\Controllers\XmlToExcelControllers\XmlToExcelController;
 Route::get('/', [XmlToExcelController::class, '__invoke']);
 
 Route::get('/admin', [AdminIndexOffersController::class, '__invoke'])->name('admin.index');
+Route::get('/download', [ExportDBtoExcelController::class, '__invoke'])->name('data.download');

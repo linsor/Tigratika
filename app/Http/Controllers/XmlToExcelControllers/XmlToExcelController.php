@@ -16,51 +16,63 @@ class XmlToExcelController extends Controller
 {
     public function __invoke()
     {
-
         $xmlString = file_get_contents('https://quarta-hunt.ru/bitrix/catalog_export/export_Ngq.xml');
         $xml = new SimpleXMLElement($xmlString);
         $excelFileName = 'data.xlsx';
 
-        foreach($xml->shop->categories->category as $category){
-            $dataCategories[] =  [
+        foreach ($xml->shop->categories->category as $category) {
+            $dataCategories[] = [
                 'id' => (int) $category['id'],
                 'name' => (string) $category,
-                'parentId' => (int)$category['parentId']
+                'parentId' => (int) $category['parentId']
             ];
         }
 
-       $data  = [];
-       $data = $this->fillengArrayData($data, $xml, $dataCategories);
+        $data = [];
+        $data = $this->fillengArrayData($data, $xml, $dataCategories);
 
         return Excel::download(new TigratikaExport($data), $excelFileName);
     }
 
-    private function searchSubCategory ($categoryId, $dataCategories)
+    private function searchSubCategory($categoryId, $dataCategories)
     {
-        foreach($dataCategories as $category){
-            if ($categoryId == $category['id'] & $category['parentId'] != null){
-               return $category['parentId'];
-            
+        foreach ($dataCategories as $category) {
+            if ($categoryId == $category['id'] & $category['parentId'] != null) {
+                return $category['parentId'];
+
+            }
+        }
+        return null;
+    }
+    private function searchSubCategoryName($categoryId, $dataCategories)
+    {
+        foreach ($dataCategories as $category) {
+            if ($categoryId == $category['id']) {
+                return $category['name'];
+
             }
         }
         return null;
     }
 
-    private function fillengArrayData($data, $xml,$dataCategories) : array
+    private function fillengArrayData($data, $xml, $dataCategories): array
     {
-        foreach($xml->shop->offers->offer as $offer){
-            $data[] =  [
+        foreach ($xml->shop->offers->offer as $offer) {
+            $data[] = [
                 'offerId' => (string) $offer['id'],
-                'available' => (string) $offer['available'], 
+                'available' => (string) $offer['available'],
                 'url' => (string) $offer->url,
                 'price' => (float) $offer->price,
                 'oldprice' => (float) $offer->oldprice,
-                'currencyId' => (string) $offer->currencyId, 
-                'categoryId' => (string) $offer->categoryId,
-                'sub_categoryId' => $this->searchSubCategory($offer->categoryId, $dataCategories),
-                'sub_sub_categoryId' => $this->searchSubCategory(
+                'currencyId' => (string) $offer->currencyId,
+                'categoryId' => (string) $this->searchSubCategoryName($offer->categoryId, $dataCategories),
+                'sub_categoryId' => $this->searchSubCategoryName(
+                    $this->searchSubCategory($offer->categoryId, $dataCategories), $dataCategories
+                ),
+                'sub_sub_categoryId' => $this->searchSubCategoryName( 
+                    $this->searchSubCategory(
                     $this->searchSubCategory($offer->categoryId, $dataCategories),
-                    $dataCategories
+                    $dataCategories),$dataCategories
                 ),
                 'picture' => (string) $offer->picture,
                 'name' => (string) $offer->name,
