@@ -5,8 +5,9 @@
 
 <div class="container">
     <div class="row">
+
         @foreach ($offers as $offer)
-            <div class="card mb-3" style="max-width: 540px;">
+            <div class="card mb-3 mr-3" style="max-width: 540px;">
                     <div class="row g-0 md-3">
                         <div class="col-md-4">
                             <img src="{{$offer->picture}}" style="max-width: 150px" class="img-fluid rounded-start mt-2 ml-2" alt="...">
@@ -29,14 +30,3 @@
 </div>
 
 @endsection
-
-
-<div class="form-group w-50">
-    <label for="exampleInputFile">Загрузка изображения</label>
-    <div class="input-group">
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" name = 'PostImage'>
-            <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
-        </div>
-    </div>
-</div>

@@ -17,7 +17,10 @@ class XmlToExcelController extends Controller
 {
     public function __invoke()
     {
+
         $xmlString = file_get_contents('https://quarta-hunt.ru/bitrix/catalog_export/export_Ngq.xml');
+
+
         $xml = new SimpleXMLElement($xmlString);
         $excelFileName = 'data.xlsx';
 
