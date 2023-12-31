@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\XmlToExcelControllers\AdminIndexOffersController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\XmlToExcelControllers\XmlToMySQLController;
+use App\Http\Controllers\XmlToExcelControllers\XmlToExcelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,6 @@ use App\Http\Controllers\XmlToExcelControllers\XmlToMySQLController;
 //    return view('welcome');
 //});
 
-Route::get('/', [XmlToMySQLController::class, '__invoke']);
+Route::get('/', [XmlToExcelController::class, '__invoke']);
+
+Route::get('/admin', [AdminIndexOffersController::class, '__invoke'])->name('admin.index');

@@ -35,6 +35,8 @@ class TigratikaExport implements FromArray, WithHeadings
             'oldprice',
             'currencyId', 
             'categoryId',
+            'sub_categoryId',
+            'Sub_sub_categoryId',
             'picture',
             'name',
             'vendor'
