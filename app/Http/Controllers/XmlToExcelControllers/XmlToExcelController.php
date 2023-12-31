@@ -4,6 +4,7 @@ namespace App\Http\Controllers\XmlToExcelControllers;
 
 use App\Exports\TigratikaExport;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\XMLFile;
 use App\Models\Category;
 use App\Models\Offer;
 use Illuminate\Http\Request;
@@ -34,27 +35,6 @@ class XmlToExcelController extends Controller
         return Excel::download(new TigratikaExport($data), $excelFileName);
     }
 
-    private function searchSubCategory($categoryId, $dataCategories)
-    {
-        foreach ($dataCategories as $category) {
-            if ($categoryId == $category['id'] & $category['parentId'] != null) {
-                return $category['parentId'];
-
-            }
-        }
-        return null;
-    }
-    private function searchSubCategoryName($categoryId, $dataCategories)
-    {
-        foreach ($dataCategories as $category) {
-            if ($categoryId == $category['id']) {
-                return $category['name'];
-
-            }
-        }
-        return null;
-    }
-
     private function fillengArrayData($data, $xml, $dataCategories): array
     {
         foreach ($xml->shop->offers->offer as $offer) {
@@ -80,5 +60,25 @@ class XmlToExcelController extends Controller
             ];
         }
         return $data;
+    }
+    private function searchSubCategory($categoryId, $dataCategories)
+    {
+        foreach ($dataCategories as $category) {
+            if ($categoryId == $category['id'] & $category['parentId'] != null) {
+                return $category['parentId'];
+
+            }
+        }
+        return null;
+    }
+    private function searchSubCategoryName($categoryId, $dataCategories)
+    {
+        foreach ($dataCategories as $category) {
+            if ($categoryId == $category['id']) {
+                return $category['name'];
+
+            }
+        }
+        return null;
     }
 }

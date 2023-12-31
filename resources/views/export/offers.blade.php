@@ -29,3 +29,14 @@
 </div>
 
 @endsection
+
+
+<div class="form-group w-50">
+    <label for="exampleInputFile">Загрузка изображения</label>
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" name = 'PostImage'>
+            <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
+        </div>
+    </div>
+</div>
