@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\XmlToExcelControllers\XmlToExcelController;
+use App\Http\Controllers\XmlToExcelControllers\XmlToMySQLController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +18,4 @@ use App\Http\Controllers\XmlToExcelControllers\XmlToExcelController;
 //    return view('welcome');
 //});
 
-Route::get('/', [XmlToExcelController::class, '__invoke']);
+Route::get('/', [XmlToMySQLController::class, '__invoke']);

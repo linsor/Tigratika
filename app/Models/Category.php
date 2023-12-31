@@ -9,9 +9,16 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function childrenCategory()
+    protected $guarded = false;
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parentID');
+    }
+
+    public function offers()
     {
 
-        return $this->hasMany(Category::class, 'parentID');
+        return $this->hasMany(Offer::class);
     }
 }

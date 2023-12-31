@@ -9,6 +9,8 @@ class Offer extends Model
 {
     use HasFactory;
 
+    protected $guarded = false;
+
     public function category()
     {
 
