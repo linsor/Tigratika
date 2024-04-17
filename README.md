@@ -1,3 +1,8 @@
+Тестовое задание для компании Tigratika 
+Обработка XML файла:
+1. Запись в БД
+2. Конвертация в EXCEL
+
 1. Развернуть проект Laravel
     composer create-project laravel/laravel Tigratica_exs
     - git pull
